@@ -1,9 +1,15 @@
 import { Provider } from "mobx-react";
 import Head from "next/head";
 
-import CardSection from "../components/CardSection";
+import CardSection from "../components/Cards/CardSection";
 import InputComponent from "../components/InputComponent";
+import FilterSection from "../components/Filters/FilterSection";
 import { initStore } from "../store";
+
+import {
+  MainPageWrapper,
+  NavigationSection,
+} from "../styled-components/MainPage";
 
 import Manager from "../services/Manager";
 
@@ -40,8 +46,6 @@ const Index = ({ data }) => {
             .indexOf(keyword.toLowerCase()) !== -1;
     });
   };
-  console.log(store.list);
-
   return (
     <Provider store={store}>
       <Head>
@@ -55,6 +59,10 @@ const Index = ({ data }) => {
           rel="stylesheet"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap"
+          rel="stylesheet"
+        />
+        <link
           rel="stylesheet"
           href="https://static.azati.ai/web-site/css/reset.css"
         />
@@ -63,12 +71,17 @@ const Index = ({ data }) => {
           href="https://static.azati.ai/framework/v1/css/af-buttons.css"
         />
       </Head>
-      <InputComponent
-        placeholder="Technologies"
-        type="text"
-        onInput={(event) => inputOnChangeHandler(event)}
-      />
-      <CardSection />
+      <MainPageWrapper>
+        <NavigationSection>
+          <InputComponent
+            placeholder="Technologies"
+            type="text"
+            onInput={(event) => inputOnChangeHandler(event)}
+          />
+          <FilterSection></FilterSection>
+        </NavigationSection>
+        <CardSection />
+      </MainPageWrapper>
     </Provider>
   );
 };

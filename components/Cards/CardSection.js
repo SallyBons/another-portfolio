@@ -2,7 +2,7 @@ import { Component } from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
 import CardComponent from "./CardComponent";
-import { DataSlicer } from "../services/DataSlicer";
+import { DataSlicer } from "../../services/DataSlicer";
 
 const LoadMoreButtonWrapper = styled.div`
   display: flex;

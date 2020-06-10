@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { customMedia } from "../styled-components/customMedia";
+import styled from "styled-components";
+import { customMedia } from "../../styled-components/customMedia";
 
 const CardComponentWrapper = styled.article`
   display: flex;
