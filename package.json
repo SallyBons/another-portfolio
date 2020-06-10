@@ -8,15 +8,20 @@
     "start": "next start"
   },
   "dependencies": {
+    "@svgr/webpack": "^5.4.0",
     "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
+    "file-loader": "^6.0.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "styled-components": "^5.1.1",
-    "styled-media-query": "^2.1.2"
+    "styled-media-query": "^2.1.2",
+    "svg-loader": "^0.0.2",
+    "svg-to-react": "^0.1.0",
+    "url-loader": "^4.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
