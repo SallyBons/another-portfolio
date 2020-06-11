@@ -7,6 +7,7 @@ class Store {
     ...this.filteredProjects.slice(0, this.initialCount),
   ];
   @observable searchPhrase = "";
+  @observable selectedFilters = [];
 
   constructor(list) {
     this.list = list; // This var contains all 40+ projects

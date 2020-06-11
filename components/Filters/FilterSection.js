@@ -48,7 +48,13 @@ class FilterSection extends Component {
         <FilterComponent
           heading="Industries"
           checkBoxesArray={checkBoxesArray}
-        ></FilterComponent>
+          selectedItems={store.selectedFilters}
+        />
+        <FilterComponent
+          heading="Industries"
+          checkBoxesArray={checkBoxesArray}
+          selectedItems={store.selectedFilters}
+        />
       </FilterSectionWrapper>
     );
   }

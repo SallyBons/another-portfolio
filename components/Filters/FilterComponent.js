@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -57,7 +58,32 @@ const CheckBoxesWrapper = styled.div`
 `;
 
 const FilterComponent = ({ heading, checkBoxesArray }) => {
-  const selectedItems = [];
+  let selectedItems = [];
+
+  let [localState, modifyState] = useState(() => {
+    let localState = {};
+    checkBoxesArray.forEach((el) => (localState[el] = false));
+    return localState;
+  });
+
+  const toogleState = (value) => {
+    let newState = {
+      ...localState,
+    };
+
+    !localState[value] ? (newState[value] = true) : (newState[value] = false);
+
+    modifyState(newState);
+  };
+
+  const checkBoxHandler = (event) => {
+    !selectedItems.includes(event.target.value)
+      ? selectedItems.push(event.target.value)
+      : (selectedItems = selectedItems.filter(
+          (el) => el !== event.target.value
+        ));
+    toogleState(event.target.value);
+  };
 
   return (
     <FilterComponentWrapper>
@@ -72,16 +98,16 @@ const FilterComponent = ({ heading, checkBoxesArray }) => {
                 return (
                   <div
                     key={index}
-                    className={`${
-                      selectedItems.includes(element) ? "active" : ""
-                    }`}
+                    className={localState[element] ? "active" : "non-active"}
                   >
                     <input
                       type="checkbox"
                       name={element}
                       id={`${index}-${element}`}
-                    ></input>
-                    <label for={`${index}-${element}`}>{element}</label>
+                      onChange={(event) => checkBoxHandler(event)}
+                      value={element}
+                    />
+                    <label htmlFor={`${index}-${element}`}>{element}</label>
                   </div>
                 );
               })}
