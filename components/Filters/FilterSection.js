@@ -2,7 +2,7 @@ import { Component } from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
 import FilterComponent from "./FilterComponent";
-import { DataSlicer } from "../../services/DataSlicer";
+import { getAllCategories } from "../../services/getAllCategories";
 
 const FilterSectionWrapper = styled.div`
   max-width: 300px;
@@ -24,36 +24,40 @@ const FilterHeading = styled.div`
 @inject("store")
 @observer
 class FilterSection extends Component {
-  constructor(props) {
-    super(props);
-    // this.handleLoadMore = this.handleLoadMore.bind(this);
-  }
-
-  //   handleLoadMore() {
-  //     const { store } = this.props;
-  //     store.setDisplayProjects(
-  //       DataSlicer(store.filteredProjects, store.initialCount + 10)
-  //     );
-  //     store.initialCountHandler(store.initialCount + 10);
-  //   }
-
   render() {
     const { store } = this.props;
+    const industries = getAllCategories(store.list, "industries");
+    const programingLanguages = getAllCategories(
+      store.list,
+      "programming_languages"
+    );
+    const dataBases = getAllCategories(store.list, "databases");
+    const platforms = getAllCategories(store.list, "platforms");
 
-    const renderList = store.displayProjects;
-    const checkBoxesArray = ["JS", "Java", "React", "Vue"];
+    const updateSelectedIndustries = store.updateSelectedIndustries;
+
     return (
       <FilterSectionWrapper>
         <FilterHeading>Filters</FilterHeading>
         <FilterComponent
           heading="Industries"
-          checkBoxesArray={checkBoxesArray}
-          selectedItems={store.selectedFilters}
+          checkBoxesArray={Array.from(industries)}
+          updateFunction={updateSelectedIndustries}
         />
         <FilterComponent
-          heading="Industries"
-          checkBoxesArray={checkBoxesArray}
-          selectedItems={store.selectedFilters}
+          heading="Build With"
+          checkBoxesArray={Array.from(programingLanguages)}
+          updateFunction={updateSelectedIndustries}
+        />
+        <FilterComponent
+          heading="Data Bases"
+          checkBoxesArray={Array.from(dataBases)}
+          updateFunction={updateSelectedIndustries}
+        />
+        <FilterComponent
+          heading="Platforms"
+          checkBoxesArray={Array.from(platforms)}
+          updateFunction={updateSelectedIndustries}
         />
       </FilterSectionWrapper>
     );

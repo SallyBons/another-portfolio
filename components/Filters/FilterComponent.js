@@ -16,6 +16,10 @@ const FilterComponentWrapper = styled.div`
     color: var(--azati-blue);
     font-weight: 700;
     padding: 15px;
+    max-height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .accordion__button:after {
@@ -23,7 +27,6 @@ const FilterComponentWrapper = styled.div`
     content: "";
     height: 10px;
     width: 10px;
-    margin-left: 160px;
     margin-bottom: 5px;
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
@@ -37,10 +40,14 @@ const FilterComponentWrapper = styled.div`
   }
 `;
 
+const Divider = styled.div`
+  border-bottom: 2px solid var(--white-grey);
+  margin: 0px 15px;
+`;
+
 const CheckBoxesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 15px;
   div {
     display: flex;
     flex-direction: row;
@@ -57,7 +64,7 @@ const CheckBoxesWrapper = styled.div`
   }
 `;
 
-const FilterComponent = ({ heading, checkBoxesArray }) => {
+const FilterComponent = ({ heading, checkBoxesArray, updateFunction }) => {
   let selectedItems = [];
 
   let [localState, modifyState] = useState(() => {
@@ -82,6 +89,8 @@ const FilterComponent = ({ heading, checkBoxesArray }) => {
       : (selectedItems = selectedItems.filter(
           (el) => el !== event.target.value
         ));
+
+    updateFunction(event.target.value);
     toogleState(event.target.value);
   };
 
@@ -92,27 +101,29 @@ const FilterComponent = ({ heading, checkBoxesArray }) => {
           <AccordionItemHeading>
             <AccordionItemButton>{heading}</AccordionItemButton>
           </AccordionItemHeading>
-          <AccordionItemPanel>
-            <CheckBoxesWrapper>
-              {checkBoxesArray.map((element, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={localState[element] ? "active" : "non-active"}
-                  >
-                    <input
-                      type="checkbox"
-                      name={element}
-                      id={`${index}-${element}`}
-                      onChange={(event) => checkBoxHandler(event)}
-                      value={element}
-                    />
-                    <label htmlFor={`${index}-${element}`}>{element}</label>
-                  </div>
-                );
-              })}
-            </CheckBoxesWrapper>
-          </AccordionItemPanel>
+          <Divider>
+            <AccordionItemPanel>
+              <CheckBoxesWrapper>
+                {checkBoxesArray.map((element, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={localState[element] ? "active" : "non-active"}
+                    >
+                      <input
+                        type="checkbox"
+                        name={element}
+                        id={`${index}-${element}`}
+                        onChange={(event) => checkBoxHandler(event)}
+                        value={element}
+                      />
+                      <label htmlFor={`${index}-${element}`}>{element}</label>
+                    </div>
+                  );
+                })}
+              </CheckBoxesWrapper>
+            </AccordionItemPanel>
+          </Divider>
         </AccordionItem>
       </Accordion>
     </FilterComponentWrapper>
