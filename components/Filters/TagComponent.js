@@ -10,7 +10,7 @@ import {
 
 import { customMedia } from "../../styled-components/customMedia";
 
-const FilterComponentWrapper = styled.div`
+const TagComponentWrapper = styled.div`
   .accordion__button {
     font-size: 18px;
     color: var(--azati-blue);
@@ -41,40 +41,48 @@ const FilterComponentWrapper = styled.div`
 `;
 
 const Divider = styled.div`
-  border-bottom: 2px solid var(--white-grey);
+  border-bottom: 1px solid var(--white-grey);
   margin: 0px 15px;
 `;
 
-const CheckBoxesWrapper = styled.div`
+const TagsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 5px;
-    input {
-      width: 15px;
-      height: 15px;
-      margin-right: 10px;
-      :checked {
-        border: 2px solid black;
-      }
-    }
-  }
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+   }
 `;
 
-const FilterComponent = ({
-  heading,
-  checkBoxesArray,
-  updateFunction,
-  attribute,
-}) => {
-  let selectedItems = [];
+const TagElement = styled.div`
+  background-color: var(--white-grey);
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 4px;
+  min-height: 30px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding 0 10px;
+  cursor: pointer;
+  :hover {
+    background-color: var(--azati-orange);
+    box-shadow: 0 1px 10px rgba(255, 156, 66, 0.2);
+  }
+  &.active{
+    background-color: var(--azati-orange);
+    box-shadow: 0 1px 10px rgba(255, 156, 66, 0.2);
+  }
+
+`;
+
+const TagComponent = ({ TagsArray, updateFunction, attribute }) => {
+  let selectedTags = [];
 
   let [localState, modifyState] = useState(() => {
     let localState = {};
-    checkBoxesArray.forEach((el) => (localState[el] = false));
+    TagsArray.forEach((el) => (localState[el] = false));
     return localState;
   });
 
@@ -88,51 +96,45 @@ const FilterComponent = ({
     modifyState(newState);
   };
 
-  const checkBoxHandler = (event) => {
-    !selectedItems.includes(event.target.value)
-      ? selectedItems.push(event.target.value)
-      : (selectedItems = selectedItems.filter(
-          (el) => el !== event.target.value
-        ));
+  const tagOnClickHandler = (selectedElement) => {
+    !selectedTags.includes(
+      selectedElement
+        ? selectedTags.push(selectedElement)
+        : (selectedTags = selectedTags.filter((el) => el !== selectedElement))
+    );
 
-    updateFunction(event.target.value, attribute);
-    toogleState(event.target.value);
+    updateFunction(selectedElement, attribute);
+    toogleState(selectedElement);
   };
 
   return (
-    <FilterComponentWrapper>
+    <TagComponentWrapper>
       <Accordion allowZeroExpanded={true}>
         <AccordionItem>
           <AccordionItemHeading>
-            <AccordionItemButton>{heading}</AccordionItemButton>
+            <AccordionItemButton>Tags</AccordionItemButton>
           </AccordionItemHeading>
           <Divider>
             <AccordionItemPanel>
-              <CheckBoxesWrapper>
-                {checkBoxesArray.map((element, index) => {
+              <TagsWrapper>
+                {TagsArray.map((element, index) => {
                   return (
-                    <div
+                    <TagElement
                       key={index}
+                      onClick={() => tagOnClickHandler(element)}
                       className={localState[element] ? "active" : "non-active"}
                     >
-                      <input
-                        type="checkbox"
-                        name={element}
-                        id={`${index}-${element}`}
-                        onChange={(event) => checkBoxHandler(event)}
-                        value={element}
-                      />
-                      <label htmlFor={`${index}-${element}`}>{element}</label>
-                    </div>
+                      {element}
+                    </TagElement>
                   );
                 })}
-              </CheckBoxesWrapper>
+              </TagsWrapper>
             </AccordionItemPanel>
           </Divider>
         </AccordionItem>
       </Accordion>
-    </FilterComponentWrapper>
+    </TagComponentWrapper>
   );
 };
 
-export default FilterComponent;
+export default TagComponent;

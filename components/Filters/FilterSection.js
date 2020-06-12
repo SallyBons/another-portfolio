@@ -2,7 +2,8 @@ import { Component } from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
 import FilterComponent from "./FilterComponent";
-import { getAllCategories } from "../../services/getAllCategories";
+import TagComponent from "./TagComponent";
+import { getAllCategories } from "../../utils/getAllCategories";
 
 const FilterSectionWrapper = styled.div`
   max-width: 300px;
@@ -33,8 +34,9 @@ class FilterSection extends Component {
     );
     const dataBases = getAllCategories(store.list, "databases");
     const platforms = getAllCategories(store.list, "platforms");
+    const tags = getAllCategories(store.list, "tags");
 
-    const updateSelectedIndustries = store.updateSelectedIndustries;
+    const updateSelectedAttribute = store.updateSelectedAttribute;
 
     return (
       <FilterSectionWrapper>
@@ -42,22 +44,31 @@ class FilterSection extends Component {
         <FilterComponent
           heading="Industries"
           checkBoxesArray={Array.from(industries)}
-          updateFunction={updateSelectedIndustries}
+          updateFunction={updateSelectedAttribute}
+          attribute={"industries"}
         />
         <FilterComponent
           heading="Build With"
           checkBoxesArray={Array.from(programingLanguages)}
-          updateFunction={updateSelectedIndustries}
+          updateFunction={updateSelectedAttribute}
+          attribute={"programming_languages"}
         />
         <FilterComponent
           heading="Data Bases"
           checkBoxesArray={Array.from(dataBases)}
-          updateFunction={updateSelectedIndustries}
+          updateFunction={updateSelectedAttribute}
+          attribute={"databases"}
         />
         <FilterComponent
           heading="Platforms"
           checkBoxesArray={Array.from(platforms)}
-          updateFunction={updateSelectedIndustries}
+          updateFunction={updateSelectedAttribute}
+          attribute={"platforms"}
+        />
+        <TagComponent
+          TagsArray={Array.from(tags)}
+          updateFunction={updateSelectedAttribute}
+          attribute={"tags"}
         />
       </FilterSectionWrapper>
     );
