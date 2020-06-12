@@ -62,6 +62,11 @@ class FilterSection extends Component {
 
     const updateSelectedAttribute = store.updateSelectedAttribute;
 
+    // console.log("Rendering", store.selectedIndustries);
+    // // const renderList = store.displayProjects;
+
+    // const selectedIndustries = ;
+
     return (
       <FilterSectionWrapper>
         <FilterHeading>Filters</FilterHeading>
@@ -70,34 +75,34 @@ class FilterSection extends Component {
           checkBoxesArray={Array.from(industries)}
           updateFunction={updateSelectedAttribute}
           attribute={"industries"}
-          storeArray={store.selectedIndustries}
+          storeArray={[...store.selectedIndustries]}
         />
         <FilterComponent
           heading="Build With"
           checkBoxesArray={Array.from(programingLanguages)}
           updateFunction={updateSelectedAttribute}
           attribute={"programming_languages"}
-          storeArray={store.selectedProgrammingLanguages}
+          storeArray={[...store.selectedProgrammingLanguages]}
         />
         <FilterComponent
-          heading="Data Bases"
+          heading="Databases"
           checkBoxesArray={Array.from(dataBases)}
           updateFunction={updateSelectedAttribute}
           attribute={"databases"}
-          storeArray={store.selectedDataBases}
+          storeArray={[...store.selectedDataBases]}
         />
         <FilterComponent
           heading="Platforms"
           checkBoxesArray={Array.from(platforms)}
           updateFunction={updateSelectedAttribute}
           attribute={"platforms"}
-          storeArray={store.selectedPlatforms}
+          storeArray={[...store.selectedPlatforms]}
         />
         <TagComponent
           TagsArray={Array.from(tags)}
           updateFunction={updateSelectedAttribute}
           attribute={"tags"}
-          storeArray={store.selectedTags}
+          storeArray={[...store.selectedTags]}
         />
         <ResetFilterButtonWrapper>
           <ResetFiltersButton

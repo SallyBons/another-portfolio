@@ -90,25 +90,8 @@ const FilterComponent = ({
   attribute,
   storeArray,
 }) => {
-  let [localState, modifyState] = useState(() => {
-    let localState = {};
-    checkBoxesArray.forEach((el) => (localState[el] = false));
-    return localState;
-  });
-
-  const toogleState = (value) => {
-    let newState = {
-      ...localState,
-    };
-
-    !localState[value] ? (newState[value] = true) : (newState[value] = false);
-
-    modifyState(newState);
-  };
-
   const checkBoxHandler = (event) => {
     updateFunction(event.target.value, attribute);
-    toogleState(event.target.value);
   };
 
   return (
@@ -122,7 +105,6 @@ const FilterComponent = ({
             <AccordionItemPanel>
               <CheckBoxesWrapper>
                 {checkBoxesArray.map((element, index) => {
-                  console.log(storeArray);
                   return (
                     <div
                       key={index}
