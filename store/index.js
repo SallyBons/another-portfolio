@@ -39,6 +39,14 @@ class Store {
     this.initialCount = newCount;
   };
 
+  @action resetAll = () => {
+    this.selectedIndustries = [];
+    this.selectedProgrammingLanguages = [];
+    this.selectedDataBases = [];
+    this.selectedPlatforms = [];
+    this.selectedTags = [];
+  };
+
   @action updateSelectedAttribute = (value, attribute) => {
     switch (attribute) {
       case "industries":

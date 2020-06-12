@@ -41,7 +41,7 @@ const FilterComponentWrapper = styled.div`
 `;
 
 const Divider = styled.div`
-  border-bottom: 2px solid var(--white-grey);
+  border-bottom: 1px solid var(--white-grey);
   margin: 0px 15px;
 `;
 
@@ -53,13 +53,32 @@ const CheckBoxesWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     margin-bottom: 5px;
-    input {
-      width: 15px;
-      height: 15px;
-      margin-right: 10px;
-      :checked {
-        border: 2px solid black;
+    &.non-active {
+      input {
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+        // :checked {
+        //   -webkit-appearance: none;
+        //   -moz-appearance: none;
+        //   appearance: none;
+        //   border: 1px solid #767676;
+        //   border-radius: 2px;
+        // }
       }
+    }
+      &.active{
+        input{
+          width: 15px;
+        height: 15px;
+        margin-right: 10px;
+          // :checked {
+          //   border: 1px solid var(--azati-orange);
+          //   border-radius: 2px;
+          //  }
+        }
+      }
+      
     }
   }
 `;
@@ -69,9 +88,8 @@ const FilterComponent = ({
   checkBoxesArray,
   updateFunction,
   attribute,
+  storeArray,
 }) => {
-  let selectedItems = [];
-
   let [localState, modifyState] = useState(() => {
     let localState = {};
     checkBoxesArray.forEach((el) => (localState[el] = false));
@@ -89,12 +107,6 @@ const FilterComponent = ({
   };
 
   const checkBoxHandler = (event) => {
-    !selectedItems.includes(event.target.value)
-      ? selectedItems.push(event.target.value)
-      : (selectedItems = selectedItems.filter(
-          (el) => el !== event.target.value
-        ));
-
     updateFunction(event.target.value, attribute);
     toogleState(event.target.value);
   };
@@ -110,10 +122,15 @@ const FilterComponent = ({
             <AccordionItemPanel>
               <CheckBoxesWrapper>
                 {checkBoxesArray.map((element, index) => {
+                  console.log(storeArray);
                   return (
                     <div
                       key={index}
-                      className={localState[element] ? "active" : "non-active"}
+                      className={
+                        storeArray.length !== 0 && storeArray.includes(element)
+                          ? "active"
+                          : "non-active"
+                      }
                     >
                       <input
                         type="checkbox"
@@ -121,6 +138,12 @@ const FilterComponent = ({
                         id={`${index}-${element}`}
                         onChange={(event) => checkBoxHandler(event)}
                         value={element}
+                        checked={
+                          storeArray.length !== 0 &&
+                          storeArray.includes(element)
+                            ? true
+                            : false
+                        }
                       />
                       <label htmlFor={`${index}-${element}`}>{element}</label>
                     </div>

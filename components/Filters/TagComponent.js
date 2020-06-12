@@ -68,16 +68,16 @@ const TagElement = styled.div`
   cursor: pointer;
   :hover {
     background-color: var(--azati-orange);
-    box-shadow: 0 1px 10px rgba(255, 156, 66, 0.2);
+    box-shadow: 0 4px 22px 0 rgba(231, 114, 0, 0);
   }
   &.active{
     background-color: var(--azati-orange);
-    box-shadow: 0 1px 10px rgba(255, 156, 66, 0.2);
+    box-shadow: 0 4px 22px 0 rgba(231, 114, 0, 0);
   }
 
 `;
 
-const TagComponent = ({ TagsArray, updateFunction, attribute }) => {
+const TagComponent = ({ TagsArray, updateFunction, attribute, storeArray }) => {
   let selectedTags = [];
 
   let [localState, modifyState] = useState(() => {
@@ -122,7 +122,11 @@ const TagComponent = ({ TagsArray, updateFunction, attribute }) => {
                     <TagElement
                       key={index}
                       onClick={() => tagOnClickHandler(element)}
-                      className={localState[element] ? "active" : "non-active"}
+                      className={
+                        storeArray.length !== 0 && localState[element]
+                          ? "active"
+                          : "non-active"
+                      }
                     >
                       {element}
                     </TagElement>

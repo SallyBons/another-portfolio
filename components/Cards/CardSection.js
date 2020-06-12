@@ -49,7 +49,7 @@ class CardSection extends Component {
   handleLoadMore() {
     const { store } = this.props;
     store.setDisplayProjects(
-      DataSlicer(store.filteredProjects, store.initialCount + 10)
+      dataSlicer(store.filteredProjects, store.initialCount + 10)
     );
     store.initialCountHandler(store.initialCount + 10);
   }
