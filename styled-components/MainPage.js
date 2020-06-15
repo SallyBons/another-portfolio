@@ -3,8 +3,10 @@ import styled from "styled-components"; //need this styles for main page. Can't 
 export const MainPageWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin: 0 auto;
-  max-width: 66%;
+  max-width: 1440px;
+  padding: 25px 15px;
   width: 100%;
 `;
 
