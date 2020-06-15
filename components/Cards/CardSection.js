@@ -76,7 +76,8 @@ class CardSection extends Component {
           })
         ) : (
           <NotFoundText>
-            <h3>Nothing Found</h3> <h3>for "{store.searchPhrase}"</h3>
+            <h3>Nothing Found</h3>
+            {store.searchPhrase && <h3>for "{store.searchPhrase}"</h3>}
             <p>
               Please look through&nbsp;
               <a href="https://azati.ai/portfolio/all">
