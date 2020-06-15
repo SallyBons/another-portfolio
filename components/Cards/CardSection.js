@@ -15,6 +15,7 @@ const LoadMoreButton = styled.button`
 
 const CardSectionWrapper = styled.div`
   max-width: 900px;
+  margin-top: 75px;
 `;
 
 const NotFoundText = styled.div`

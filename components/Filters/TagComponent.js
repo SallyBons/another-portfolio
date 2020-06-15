@@ -15,7 +15,7 @@ const TagComponentWrapper = styled.div`
     font-size: 18px;
     color: var(--azati-blue);
     font-weight: 700;
-    padding: 15px;
+    padding: 15px 25px;
     max-height: 60px;
     display: flex;
     flex-direction: row;
@@ -27,7 +27,7 @@ const TagComponentWrapper = styled.div`
     content: "";
     height: 10px;
     width: 10px;
-    margin-bottom: 5px;
+    margin-top: 3px;
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
     transform: rotate(45deg);
@@ -36,13 +36,13 @@ const TagComponentWrapper = styled.div`
   .accordion__button[aria-expanded="true"]::after,
   .accordion__button[aria-selected="true"]::after {
     transform: rotate(225deg);
-    margin-bottom: -5px;
+    margin-top: 9px;
   }
 `;
 
 const Divider = styled.div`
   border-bottom: 1px solid var(--white-grey);
-  margin: 0px 15px;
+  margin: 0px 25px;
 `;
 
 const TagsWrapper = styled.div`

@@ -9,7 +9,7 @@ const InputWrapper = styled.div`
   justify-content: space-between;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  padding: 5px 25px;
+  padding: 0 25px;
 `;
 
 const SearchInput = styled.input`

@@ -3,14 +3,15 @@ import styled from "styled-components"; //need this styles for main page. Can't 
 export const MainPageWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 66%;
   width: 100%;
 `;
 
 export const NavigationSection = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
   padding: 0 25px;
 `;

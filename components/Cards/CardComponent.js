@@ -8,7 +8,7 @@ const CardComponentWrapper = styled.article`
   width: 100%;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  margin: 0 auto 30px;
+  margin: 0 auto 25px;
   ${customMedia.lessThan("1200px")`
   flex-direction:column-reverse;
   `}
