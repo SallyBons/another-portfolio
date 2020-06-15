@@ -53,29 +53,55 @@ const CheckBoxesWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     margin-bottom: 5px;
+    cursor: pointer;
     &.non-active {
+      cursor: pointer;
       input {
         width: 15px;
         height: 15px;
         margin-right: 10px;
-        // :checked {
-        //   -webkit-appearance: none;
-        //   -moz-appearance: none;
-        //   appearance: none;
-        //   border: 1px solid #767676;
-        //   border-radius: 2px;
-        // }
+        cursor: pointer;
+      }
+      label{
+        cursor: pointer;
       }
     }
       &.active{
+        cursor: pointer;
+        label{
+          cursor: pointer;
+          color: var(--azati-orange)
+        }
         input{
           width: 15px;
         height: 15px;
         margin-right: 10px;
-          // :checked {
-          //   border: 1px solid var(--azati-orange);
-          //   border-radius: 2px;
-          //  }
+        cursor: pointer;
+        :checked {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1px solid var(--azati-orange);
+            border-radius: 2px;
+            position: relative;
+          }
+          :checked ::after {
+            content: '';
+            position: absolute;
+            width: 1.2ex;
+            height: 0.4ex;
+            background: rgba(0, 0, 0, 0);
+            top: 3px;
+            left: 2px;
+            border: 1px solid var(--azati-orange);
+            border-top: none;
+            border-right: none;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+         }
         }
       }
       
