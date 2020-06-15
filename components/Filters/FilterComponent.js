@@ -61,6 +61,11 @@ const CheckBoxesWrapper = styled.div`
         height: 15px;
         margin-right: 10px;
         cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid var(--white-grey);
+        border-radius: 2px;
       }
       label{
         cursor: pointer;
@@ -73,14 +78,14 @@ const CheckBoxesWrapper = styled.div`
           color: var(--azati-orange)
         }
         input{
-          width: 15px;
+        width: 15px;
         height: 15px;
         margin-right: 10px;
         cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         :checked {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
             border: 1px solid var(--azati-orange);
             border-radius: 2px;
             position: relative;
