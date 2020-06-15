@@ -1,4 +1,4 @@
-import { action, observable, computed } from "mobx";
+import { action, observable } from "mobx";
 
 import { filterProjectByAttribute } from "../utils/filterProjectByAttribute";
 import { updateSelectedArray } from "../utils/updateSelectedArray";
@@ -32,7 +32,7 @@ class Store {
   };
 
   @action setSearchPhrase = (text) => {
-    this.resetAll();
+    this.resetAll(); //reset filters when type
     this.searchPhrase = text;
   };
 

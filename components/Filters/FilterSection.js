@@ -46,7 +46,7 @@ const ResetFiltersButton = styled.button`
 class FilterSection extends Component {
   constructor(props) {
     super(props);
-    this.handleResetAllFilters = this.handleResetAllFilters.bind(this);
+    this.handleResetAllFilters = this.handleResetAllFilters.bind(this); //bind this handler to the props
   }
 
   handleResetAllFilters() {
@@ -57,7 +57,7 @@ class FilterSection extends Component {
 
   render() {
     const { store } = this.props;
-    const industries = getAllCategories(store.list, "industries");
+    const industries = getAllCategories(store.list, "industries"); // get all industries from store by category
     const programingLanguages = getAllCategories(
       store.list,
       "programming_languages"
@@ -66,17 +66,17 @@ class FilterSection extends Component {
     const platforms = getAllCategories(store.list, "platforms");
     const tags = getAllCategories(store.list, "tags");
 
-    const updateSelectedAttribute = store.updateSelectedAttribute;
+    const updateSelectedAttribute = store.updateSelectedAttribute; //  store update function
 
     return (
       <FilterSectionWrapper>
         <FilterHeading>Filters</FilterHeading>
         <FilterComponent
           heading="Industries"
-          checkBoxesArray={Array.from(industries)}
+          checkBoxesArray={Array.from(industries)} // converting Set to Array
           updateFunction={updateSelectedAttribute}
           attribute={"industries"}
-          storeArray={[...store.selectedIndustries]}
+          storeArray={[...store.selectedIndustries]} // need that construction to provide context to the child. In other way this component will not to react on store's changes and will not be re-rendered.
         />
         <FilterComponent
           heading="Build With"

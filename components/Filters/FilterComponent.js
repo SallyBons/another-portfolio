@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -26,20 +25,20 @@ const FilterComponentWrapper = styled.div`
     height: 10px;
     width: 10px;
     margin-top: 3px;
-    border-bottom: 2px solid currentColor;
+    border-bottom: 2px solid currentColor; // Styles for accordion arrow icon
     border-right: 2px solid currentColor;
     transform: rotate(45deg);
   }
 
   .accordion__button[aria-expanded="true"]::after,
   .accordion__button[aria-selected="true"]::after {
-    transform: rotate(225deg);
+    transform: rotate(225deg); // styles for accordion arrow icon is up or down
     margin-top: 9px;
   }
 `;
 
 const Divider = styled.div`
-  border-bottom: 1px solid var(--white-grey);
+  border-bottom: 1px solid var(--white-grey); //grey border between checkboxes groups
   margin: 0px 25px;
 `;
 
@@ -53,37 +52,30 @@ const CheckBoxesWrapper = styled.div`
     align-items: center;
     margin-bottom: 5px;
     cursor: pointer;
-    &.non-active {
-      cursor: pointer;
       input {
-        width: 15px;
-        height: 15px;
-        margin-right: 10px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+      cursor: pointer;
+      label {
         cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+        }
+      }
+    &.non-active {
+      input {
         border: 1px solid var(--white-grey);
         border-radius: 2px;
-      }
-      label{
-        cursor: pointer;
-      }
+      } 
     }
       &.active{
-        cursor: pointer;
-        label{
+        label {
           cursor: pointer;
           color: var(--azati-orange)
         }
-        input{
-        width: 15px;
-        height: 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+        input {
         :checked {
             border: 1px solid var(--azati-orange);
             border-radius: 2px;
@@ -97,7 +89,7 @@ const CheckBoxesWrapper = styled.div`
             background: rgba(0, 0, 0, 0);
             top: calc(50% - 0.2ex - 1.5px);
             left: calc(50% - 0.6ex);
-            border: 1px solid var(--azati-orange);
+            border: 1px solid var(--azati-orange); // Styles for checkbox marks
             border-top: none;
             border-right: none;
             -webkit-transform: rotate(-45deg);

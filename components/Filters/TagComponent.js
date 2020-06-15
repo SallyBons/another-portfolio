@@ -78,33 +78,8 @@ const TagElement = styled.div`
 `;
 
 const TagComponent = ({ TagsArray, updateFunction, attribute, storeArray }) => {
-  let selectedTags = [];
-
-  let [localState, modifyState] = useState(() => {
-    let localState = {};
-    TagsArray.forEach((el) => (localState[el] = false));
-    return localState;
-  });
-
-  const toogleState = (value) => {
-    let newState = {
-      ...localState,
-    };
-
-    !localState[value] ? (newState[value] = true) : (newState[value] = false);
-
-    modifyState(newState);
-  };
-
   const tagOnClickHandler = (selectedElement) => {
-    !selectedTags.includes(
-      selectedElement
-        ? selectedTags.push(selectedElement)
-        : (selectedTags = selectedTags.filter((el) => el !== selectedElement))
-    );
-
     updateFunction(selectedElement, attribute);
-    toogleState(selectedElement);
   };
 
   return (
@@ -123,7 +98,7 @@ const TagComponent = ({ TagsArray, updateFunction, attribute, storeArray }) => {
                       key={index}
                       onClick={() => tagOnClickHandler(element)}
                       className={
-                        storeArray.length !== 0 && localState[element]
+                        storeArray.length !== 0 && storeArray.includes(element)
                           ? "active"
                           : "non-active"
                       }

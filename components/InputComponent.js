@@ -34,7 +34,7 @@ const SearchInput = styled.input`
 const Image = styled.div`
   background-image: url(/img/search.svg);
   background-position: center center;
-  background-size: 20px, auto, cover;
+  background-size: 20px, auto, cover; // search icon
   background-repeat: no-repeat;
   max-width: 20px;
   width: 100%;

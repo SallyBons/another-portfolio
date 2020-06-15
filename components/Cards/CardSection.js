@@ -45,15 +45,15 @@ const NotFoundText = styled.div`
 class CardSection extends Component {
   constructor(props) {
     super(props);
-    this.handleLoadMore = this.handleLoadMore.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this); // bind handler as action to props. Without that component will not see this handler and will throw an error
   }
 
   handleLoadMore() {
     const { store } = this.props;
     store.setDisplayProjects(
-      dataSlicer(store.filteredProjects, store.initialCount + 10)
+      dataSlicer(store.filteredProjects, store.initialCount + 10) // show another 10 projects
     );
-    store.initialCountHandler(store.initialCount + 10);
+    store.initialCountHandler(store.initialCount + 10); // update store variable responsible for counter of show cards
   }
 
   render() {
@@ -88,7 +88,7 @@ class CardSection extends Component {
             </p>
           </NotFoundText>
         )}
-        {store.filteredProjects.length !== store.displayProjects.length && (
+        {store.filteredProjects.length !== store.displayProjects.length && ( // if there are no projects in render-list, button is hidden
           <LoadMoreButtonWrapper>
             <LoadMoreButton className="af-button" onClick={this.handleLoadMore}>
               Load more

@@ -1,5 +1,7 @@
 import { generateMedia } from "styled-media-query";
 
+// need for set custom styles on different responsive
+
 // screen sizes
 export const wideScreen = 1440;
 export const screenDesktop = 992;
