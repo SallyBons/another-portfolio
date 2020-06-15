@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import { customMedia } from "../styled-components/customMedia";
 
 const InputWrapper = styled.div`
   display: flex;
@@ -10,6 +11,9 @@ const InputWrapper = styled.div`
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   padding: 0 25px;
+  ${customMedia.lessThan("1200px")`
+  max-width: unset;
+  `}
 `;
 
 const SearchInput = styled.input`
@@ -17,7 +21,7 @@ const SearchInput = styled.input`
   color: var(--white-grey);
   font-family: var(----font-bold);
   outline: none;
-  padding: 15px 0px 15px 30px;
+  padding: 15px 0;
   max-width: 400px;
   ::placeholder {
     color: var(--white-grey);

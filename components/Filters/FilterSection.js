@@ -5,11 +5,17 @@ import FilterComponent from "./FilterComponent";
 import TagComponent from "./TagComponent";
 import { getAllCategories } from "../../utils/getAllCategories";
 
+import { customMedia } from "../../styled-components/customMedia";
+
 const FilterSectionWrapper = styled.div`
   max-width: 300px;
   margin-top: 25px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 6px 6px;
+  ${customMedia.lessThan("1200px")`
+  margin-bottom: 25px;
+  max-width: unset;
+  `}
 `;
 
 const FilterHeading = styled.div`
@@ -18,7 +24,7 @@ const FilterHeading = styled.div`
   border-radius: 6px 6px 0 0;
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 15px 25px;
   font-size: 25px;
   font-weight: 500;
 `;
@@ -61,11 +67,6 @@ class FilterSection extends Component {
     const tags = getAllCategories(store.list, "tags");
 
     const updateSelectedAttribute = store.updateSelectedAttribute;
-
-    // console.log("Rendering", store.selectedIndustries);
-    // // const renderList = store.displayProjects;
-
-    // const selectedIndustries = ;
 
     return (
       <FilterSectionWrapper>
