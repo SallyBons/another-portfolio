@@ -15,6 +15,7 @@ const LoadMoreButton = styled.button`
 
 const CardSectionWrapper = styled.div`
   max-width: 900px;
+  width: 100%;
 `;
 
 const NotFoundText = styled.div`
@@ -24,6 +25,7 @@ const NotFoundText = styled.div`
   text-align: center;
   h3 {
     color: #c8c8c8;
+    padding-bottom: 10px;
   }
   p {
     font-size: 16px;

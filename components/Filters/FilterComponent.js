@@ -97,8 +97,8 @@ const CheckBoxesWrapper = styled.div`
             width: 1.2ex;
             height: 0.4ex;
             background: rgba(0, 0, 0, 0);
-            top: 3px;
-            left: 2px;
+            top: calc(50% - 0.2ex - 1.5px);
+            left: calc(50% - 0.6ex);
             border: 1px solid var(--azati-orange);
             border-top: none;
             border-right: none;
