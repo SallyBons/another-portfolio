@@ -61,12 +61,12 @@ const ImageWrapper = styled.div`
   `}
 `;
 
-const CardComponent = ({ heading, text, technologies, imageUrl, display }) => {
+const CardComponent = (props) => {
   return (
-    <CardComponentWrapper display={display}>
+    <CardComponentWrapper display={props.display}>
       <TextWrapper>
-        <Heading>{heading}</Heading>
-        <Text>{text}</Text>
+        <Heading>{props.heading}</Heading>
+        <Text>{props.text}</Text>
         {/* <Techologies>
           {
             console.log(technologies)
@@ -76,7 +76,7 @@ const CardComponent = ({ heading, text, technologies, imageUrl, display }) => {
           }
         </Techologies> */}
       </TextWrapper>
-      <ImageWrapper imageUrl={imageUrl} />
+      <ImageWrapper imageUrl={props.imageUrl} />
     </CardComponentWrapper>
   );
 };

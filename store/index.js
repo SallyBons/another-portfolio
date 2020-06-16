@@ -1,12 +1,12 @@
 import { action, observable } from "mobx";
 
-import { projectsInitialCount } from "../constants";
+import { PROJECTS_INITIAL_COUNT } from "../constants";
 
 import { filterProjectByAttribute } from "../utils/filterProjectByAttribute";
 import { updateSelectedArray } from "../utils/updateSelectedArray";
 
 class Store {
-  @observable initialCount = projectsInitialCount; //because splice does not take the second number
+  @observable initialCount = PROJECTS_INITIAL_COUNT;
   @observable filteredProjects = [...this.list];
   @observable searchPhrase = "";
   @observable selectedIndustries = [];
@@ -117,7 +117,7 @@ class Store {
     }
 
     this.setFilteredProjects(projects);
-    this.initialCountHandler(projectsInitialCount);
+    this.initialCountHandler(PROJECTS_INITIAL_COUNT);
   };
 }
 

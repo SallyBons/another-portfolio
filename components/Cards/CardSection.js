@@ -2,8 +2,7 @@ import { Component } from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
 import CardComponent from "./CardComponent";
-import { showMoreProjectsCount } from "../../constants";
-import { dataSlicer } from "../../utils/dataSlicer";
+import { SHOW_MORE_PROJECTS_COUNT } from "../../constants";
 
 const LoadMoreButtonWrapper = styled.div`
   display: flex;
@@ -51,7 +50,7 @@ class CardSection extends Component {
 
   handleLoadMore() {
     const { store } = this.props;
-    store.initialCountHandler(store.initialCount + showMoreProjectsCount); // update store variable responsible for counter of show cards
+    store.initialCountHandler(store.initialCount + SHOW_MORE_PROJECTS_COUNT); // update store variable responsible for counter of show cards
   }
 
   render() {
