@@ -7,7 +7,8 @@ class Store {
   @observable initialCount = 11; //because splice does not take the second number
   @observable filteredProjects = [...this.list];
   @observable displayProjects = [
-    ...this.filteredProjects.slice(0, this.initialCount),
+    // ...this.filteredProjects.slice(0, this.initialCount),
+    ...this.filteredProjects,
   ];
   @observable searchPhrase = "";
   @observable selectedIndustries = [];
@@ -125,6 +126,7 @@ class Store {
     }
 
     this.setFilteredProjects(projects);
+    this.initialCountHandler(11);
   };
 }
 

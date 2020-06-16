@@ -59,19 +59,21 @@ class CardSection extends Component {
   render() {
     const { store } = this.props;
 
-    const renderList = store.displayProjects;
+    const renderList = store.filteredProjects;
+
     return (
       <CardSectionWrapper>
         {renderList.length !== 0 ? (
           renderList.map((card, index) => {
-            if (card.title && card.description) {
+            if (card?.title && card?.description) {
               return (
                 <CardComponent
                   key={index}
-                  heading={card.title}
-                  text={card.description}
+                  heading={card?.title}
+                  text={card?.description}
                   technologies={card?.technologies}
                   imageUrl={card?.image}
+                  display={index < store.initialCount}
                 />
               );
             }
@@ -88,7 +90,8 @@ class CardSection extends Component {
             </p>
           </NotFoundText>
         )}
-        {store.filteredProjects.length !== store.displayProjects.length && ( // if there are no projects in render-list, button is hidden
+        {store.filteredProjects.length >= store.initialCount && (
+          // if there are no projects in render-list, button is hidden
           <LoadMoreButtonWrapper>
             <LoadMoreButton className="af-button" onClick={this.handleLoadMore}>
               Load more

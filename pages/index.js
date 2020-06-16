@@ -12,7 +12,7 @@ import {
 } from "../styled-components/MainPage"; // import styles for main page
 
 import Manager from "../services/Manager";
-import { cardHasKeyword, findAllKeys } from "../utils/SearchFunctions";
+import { cardHasKeyword, findAllKeys } from "../utils/searchFunctions";
 
 const Index = ({ data }) => {
   const store = initStore(data.projects); // initialize store
@@ -24,7 +24,7 @@ const Index = ({ data }) => {
           cardHasKeyword(findAllKeys(store.list), event.target.value, element) // handler for search input
       )
     );
-    store.setSearchPhrase(event.target.value); // put search store in the store for not-found block
+    store.setSearchPhrase(event.target.value); // put search counter in the store for not-found block
   };
 
   return (

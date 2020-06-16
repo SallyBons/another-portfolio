@@ -1,14 +1,19 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { customMedia } from "../../styled-components/customMedia";
 
 const CardComponentWrapper = styled.article`
-  display: flex;
+  display: none;
   flex-direction: row;
   max-width: 100%;
   width: 100%;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   margin: 0 auto 25px;
+  ${(props) =>
+    props.display &&
+    css`
+      display: flex;
+    `}
   ${customMedia.lessThan("1200px")`
   flex-direction:column-reverse;
   `}
@@ -54,9 +59,9 @@ const ImageWrapper = styled.div`
   `}
 `;
 
-const CardComponent = ({ heading, text, technologies, imageUrl }) => {
+const CardComponent = ({ heading, text, technologies, imageUrl, display }) => {
   return (
-    <CardComponentWrapper>
+    <CardComponentWrapper display={display}>
       <TextWrapper>
         <Heading>{heading}</Heading>
         <Text>{text}</Text>
