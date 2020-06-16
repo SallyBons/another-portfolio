@@ -12,8 +12,7 @@ import {
 } from "../styled-components/MainPage"; // import styles for main page
 
 import Manager from "../services/Manager";
-import { cardHasKeyword } from "../utils/functionsForSearch";
-import { findAllKeys } from "../utils/findAllKeysForSearch";
+import { cardHasKeyword, findAllKeys } from "../utils/searchInputFunctions";
 
 const Index = ({ data }) => {
   const store = initStore(data.projects); // initialize store
