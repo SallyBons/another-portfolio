@@ -12,7 +12,7 @@ import {
 } from "../styled-components/MainPage"; // import styles for main page
 
 import Manager from "../services/Manager";
-import { cardHasKeyword } from "../utils/searchFunctions";
+import { cardHasKeyword } from "../utils/functionsForSearch";
 import { findAllKeys } from "../utils/findAllKeysForSearch";
 
 const Index = ({ data }) => {
