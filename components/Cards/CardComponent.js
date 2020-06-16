@@ -31,13 +31,14 @@ const TextWrapper = styled.div`
 const Heading = styled.h3`
   font-size: 25px;
   color: var(--azati-blue);
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-weight: 700;
+  line-height: 30px;
 `;
 const Text = styled.p`
   font-size: 18px;
   color: var(--grey);
-  line-height: 30px;
+  line-height: 25px;
 `;
 const Techologies = styled.div`
   font-size: 18px;
@@ -55,7 +56,8 @@ const ImageWrapper = styled.div`
   ${customMedia.lessThan("1200px")`
   min-width: unset;
   max-width: unset;
-  width: 100%
+  width: 100%;
+  min-height: 200px;
   `}
 `;
 

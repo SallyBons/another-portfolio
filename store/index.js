@@ -1,15 +1,13 @@
 import { action, observable } from "mobx";
 
+import { projectsInitialCount } from "../constants";
+
 import { filterProjectByAttribute } from "../utils/filterProjectByAttribute";
 import { updateSelectedArray } from "../utils/updateSelectedArray";
 
 class Store {
-  @observable initialCount = 11; //because splice does not take the second number
+  @observable initialCount = projectsInitialCount; //because splice does not take the second number
   @observable filteredProjects = [...this.list];
-  @observable displayProjects = [
-    // ...this.filteredProjects.slice(0, this.initialCount),
-    ...this.filteredProjects,
-  ];
   @observable searchPhrase = "";
   @observable selectedIndustries = [];
   @observable selectedProgrammingLanguages = [];
@@ -21,15 +19,8 @@ class Store {
     this.list = list; // This var contains all 40+ projects
   }
 
-  @action setDisplayProjects = (projects) => {
-    this.displayProjects = [...projects];
-  };
-
   @action setFilteredProjects = (projects) => {
     this.filteredProjects = [...projects];
-    this.displayProjects = [
-      ...this.filteredProjects.slice(0, this.initialCount),
-    ];
   };
 
   @action setSearchPhrase = (text) => {
@@ -126,7 +117,7 @@ class Store {
     }
 
     this.setFilteredProjects(projects);
-    this.initialCountHandler(11);
+    this.initialCountHandler(projectsInitialCount);
   };
 }
 

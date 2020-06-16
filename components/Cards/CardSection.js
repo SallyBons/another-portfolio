@@ -2,6 +2,7 @@ import { Component } from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
 import CardComponent from "./CardComponent";
+import { showMoreProjectsCount } from "../../constants";
 import { dataSlicer } from "../../utils/dataSlicer";
 
 const LoadMoreButtonWrapper = styled.div`
@@ -50,21 +51,15 @@ class CardSection extends Component {
 
   handleLoadMore() {
     const { store } = this.props;
-    store.setDisplayProjects(
-      dataSlicer(store.filteredProjects, store.initialCount + 10) // show another 10 projects
-    );
-    store.initialCountHandler(store.initialCount + 10); // update store variable responsible for counter of show cards
+    store.initialCountHandler(store.initialCount + showMoreProjectsCount); // update store variable responsible for counter of show cards
   }
 
   render() {
     const { store } = this.props;
-
-    const renderList = store.filteredProjects;
-
     return (
       <CardSectionWrapper>
-        {renderList.length !== 0 ? (
-          renderList.map((card, index) => {
+        {store.filteredProjects.length !== 0 ? (
+          store.filteredProjects.map((card, index) => {
             if (card?.title && card?.description) {
               return (
                 <CardComponent
@@ -90,7 +85,7 @@ class CardSection extends Component {
             </p>
           </NotFoundText>
         )}
-        {store.filteredProjects.length >= store.initialCount && (
+        {store.filteredProjects.length > store.initialCount && (
           // if there are no projects in render-list, button is hidden
           <LoadMoreButtonWrapper>
             <LoadMoreButton className="af-button" onClick={this.handleLoadMore}>
