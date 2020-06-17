@@ -10,10 +10,9 @@ const CardComponentWrapper = styled.a`
   border-radius: 6px;
   margin: 0 auto 25px;
   cursor: pointer;
-  transition: margin-right 0.5s ease;
-  margin-right: 0px;
+  transition: 0.5s ease;
   :hover {
-    margin-right: -5px;
+    transform: scale(1.005);
   }
   ${(props) =>
     props.display &&
