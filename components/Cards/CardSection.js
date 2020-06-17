@@ -4,11 +4,16 @@ import styled from "styled-components";
 import CardComponent from "./CardComponent";
 import { SHOW_MORE_PROJECTS_COUNT } from "../../constants";
 
-const LoadMoreButtonWrapper = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
 `;
 
 const LoadMoreButton = styled.button`
+  max-width: 320px;
+  margin: 0 auto 30px;
+`;
+
+const BackToTopButton = styled.a`
   max-width: 320px;
   margin: 0 auto 30px;
 `;
@@ -53,10 +58,12 @@ class CardSection extends Component {
     store.initialCountHandler(store.initialCount + SHOW_MORE_PROJECTS_COUNT); // update store variable responsible for counter of show cards
   }
 
+  handleBackToTop() {}
+
   render() {
     const { store } = this.props;
     return (
-      <CardSectionWrapper>
+      <CardSectionWrapper id="card-section">
         {store.filteredProjects.length !== 0 ? (
           store.filteredProjects.map((card, index) => {
             if (card?.title && card?.description) {
@@ -84,13 +91,23 @@ class CardSection extends Component {
             </p>
           </NotFoundText>
         )}
-        {store.filteredProjects.length > store.initialCount && (
+        {store.filteredProjects.length > store.initialCount ? (
           // if there are no projects in render-list, button is hidden
-          <LoadMoreButtonWrapper>
+          <ButtonWrapper>
             <LoadMoreButton className="af-button" onClick={this.handleLoadMore}>
               Load more
             </LoadMoreButton>
-          </LoadMoreButtonWrapper>
+          </ButtonWrapper>
+        ) : (
+          <ButtonWrapper>
+            <BackToTopButton
+              className="af-button"
+              onClick={this.handleBackToTop}
+              href="#card-section"
+            >
+              Back to Top
+            </BackToTopButton>
+          </ButtonWrapper>
         )}
       </CardSectionWrapper>
     );
