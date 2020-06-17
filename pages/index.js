@@ -40,7 +40,7 @@ const Index = ({ data }) => {
           rel="stylesheet"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap"
           rel="stylesheet"
         />
         <link
@@ -55,7 +55,7 @@ const Index = ({ data }) => {
       <MainPageWrapper>
         <NavigationSection>
           <InputComponent
-            placeholder="Technologies"
+            placeholder="Search..."
             type="text"
             onInput={(event) => inputOnChangeHandler(event)}
           />

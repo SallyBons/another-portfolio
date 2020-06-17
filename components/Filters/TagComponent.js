@@ -41,7 +41,6 @@ const TagComponentWrapper = styled.div`
 `;
 
 const Divider = styled.div`
-  border-bottom: 1px solid var(--white-grey);
   margin: 0px 25px;
 `;
 
@@ -49,7 +48,6 @@ const TagsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 30px;
    }
 `;
 

@@ -39,6 +39,8 @@ const Text = styled.p`
   font-size: 18px;
   color: var(--grey);
   line-height: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
 `;
 const Techologies = styled.div`
   font-size: 18px;
@@ -49,10 +51,11 @@ const ImageWrapper = styled.div`
   background-image: url(${(props) => props.imageUrl});
   background-position: center center;
   background-size: cover;
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 250px;
+  max-width: 250px;
   width: 100%;
   min-height: 400px;
+  border-radius: 0 6px 6px 0;
   ${customMedia.lessThan("1200px")`
   min-width: unset;
   max-width: unset;

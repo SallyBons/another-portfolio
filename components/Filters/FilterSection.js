@@ -8,7 +8,7 @@ import { getAllCategories } from "../../utils/getAllCategories";
 import { customMedia } from "../../styled-components/customMedia";
 
 const FilterSectionWrapper = styled.div`
-  max-width: 300px;
+  max-width: 350px;
   margin-top: 25px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 6px 6px;
@@ -33,11 +33,11 @@ const ResetFilterButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 0;
+  padding: 25px;
 `;
 
 const ResetFiltersButton = styled.button`
-  max-width: 230px;
+  max-width: initial;
   width: 100%;
 `;
 

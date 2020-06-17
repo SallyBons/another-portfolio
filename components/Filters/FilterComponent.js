@@ -38,7 +38,7 @@ const FilterComponentWrapper = styled.div`
 `;
 
 const Divider = styled.div`
-  border-bottom: 1px solid var(--white-grey); //grey border between checkboxes groups
+  border-bottom: 1px solid #c1c1c1; //grey border between checkboxes groups
   margin: 0px 25px;
 `;
 
@@ -59,6 +59,7 @@ const CheckBoxesWrapper = styled.div`
       width: 15px;
       height: 15px;
       margin-right: 10px;
+      margin-left: 0;
       cursor: pointer;
       label {
         cursor: pointer;

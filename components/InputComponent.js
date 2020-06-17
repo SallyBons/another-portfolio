@@ -6,7 +6,7 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
-  max-width: 250px;
+  max-width: 350px;
   justify-content: space-between;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
@@ -20,14 +20,18 @@ const SearchInput = styled.input`
   border: none;
   color: var(--white-grey);
   font-family: var(----font-bold);
+  font-size: 16px;
   outline: none;
-  padding: 15px 0;
+  padding: 10px 15px 10px 0;
   max-width: 400px;
+  line-height: 30px;
+  width: 100%;
   ::placeholder {
     color: var(--white-grey);
     font-size: 16px;
     font-family: var(----font-bold);
-    line-height: 36px;
+    line-height: 30px;
+    vertical-align: middle;
   }
 `;
 

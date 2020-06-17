@@ -10,7 +10,7 @@ export const MainPageWrapper = styled.div`
   padding: 25px 15px;
   width: 100%;
   box-sizing: border-box;
-  ${customMedia.lessThan("1200px")`
+  ${customMedia.lessThan("992px")`
   flex-direction:column;
   `}
 `;
@@ -18,12 +18,16 @@ export const MainPageWrapper = styled.div`
 export const NavigationSection = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 400px;
   width: 100%;
   padding: 0 25px;
   box-sizing: border-box;
-  ${customMedia.lessThan("1200px")`
+  position: sticky;
+  top: 20px;
+  height: 100%;
+  ${customMedia.lessThan("992px")`
   max-width: 1200px;
   padding: 0;
+  position: initial;
   `}
 `;
