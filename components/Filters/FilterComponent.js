@@ -119,46 +119,43 @@ const FilterComponent = ({
 
   return (
     <FilterComponentWrapper>
-      <Accordion allowZeroExpanded={true}>
-        <AccordionItem>
-          <AccordionItemHeading>
-            <AccordionItemButton>{heading}</AccordionItemButton>
-          </AccordionItemHeading>
-          <Divider>
-            <AccordionItemPanel>
-              <CheckBoxesWrapper>
-                {checkBoxesArray.map((element, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={
+      <AccordionItem>
+        <AccordionItemHeading>
+          <AccordionItemButton>{heading}</AccordionItemButton>
+        </AccordionItemHeading>
+        <Divider>
+          <AccordionItemPanel>
+            <CheckBoxesWrapper>
+              {checkBoxesArray.map((element, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={
+                      storeArray.length !== 0 && storeArray.includes(element)
+                        ? "active"
+                        : "non-active"
+                    }
+                  >
+                    <input
+                      type="checkbox"
+                      name={element}
+                      id={`${index}-${element}`}
+                      onChange={(event) => checkBoxHandler(event)}
+                      value={element}
+                      checked={
                         storeArray.length !== 0 && storeArray.includes(element)
-                          ? "active"
-                          : "non-active"
+                          ? true
+                          : false
                       }
-                    >
-                      <input
-                        type="checkbox"
-                        name={element}
-                        id={`${index}-${element}`}
-                        onChange={(event) => checkBoxHandler(event)}
-                        value={element}
-                        checked={
-                          storeArray.length !== 0 &&
-                          storeArray.includes(element)
-                            ? true
-                            : false
-                        }
-                      />
-                      <label htmlFor={`${index}-${element}`}>{element}</label>
-                    </div>
-                  );
-                })}
-              </CheckBoxesWrapper>
-            </AccordionItemPanel>
-          </Divider>
-        </AccordionItem>
-      </Accordion>
+                    />
+                    <label htmlFor={`${index}-${element}`}>{element}</label>
+                  </div>
+                );
+              })}
+            </CheckBoxesWrapper>
+          </AccordionItemPanel>
+        </Divider>
+      </AccordionItem>
     </FilterComponentWrapper>
   );
 };

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
+import { Accordion } from "react-accessible-accordion";
 import FilterComponent from "./FilterComponent";
 import TagComponent from "./TagComponent";
 import { getAllCategories } from "../../utils/getAllCategories";
@@ -71,40 +72,42 @@ class FilterSection extends Component {
     return (
       <FilterSectionWrapper>
         <FilterHeading>Filters</FilterHeading>
-        <FilterComponent
-          heading="Industries"
-          checkBoxesArray={Array.from(industries)} // converting Set to Array
-          updateFunction={updateSelectedAttribute}
-          attribute={"industries"}
-          storeArray={[...store.selectedIndustries]} // need that construction to provide context to the child. In other way this component will not to react on store's changes and will not be re-rendered.
-        />
-        <FilterComponent
-          heading="Build With"
-          checkBoxesArray={Array.from(programingLanguages)}
-          updateFunction={updateSelectedAttribute}
-          attribute={"programming_languages"}
-          storeArray={[...store.selectedProgrammingLanguages]}
-        />
-        <FilterComponent
-          heading="Databases"
-          checkBoxesArray={Array.from(dataBases)}
-          updateFunction={updateSelectedAttribute}
-          attribute={"databases"}
-          storeArray={[...store.selectedDataBases]}
-        />
-        <FilterComponent
-          heading="Platforms"
-          checkBoxesArray={Array.from(platforms)}
-          updateFunction={updateSelectedAttribute}
-          attribute={"platforms"}
-          storeArray={[...store.selectedPlatforms]}
-        />
-        <TagComponent
-          TagsArray={Array.from(tags)}
-          updateFunction={updateSelectedAttribute}
-          attribute={"tags"}
-          storeArray={[...store.selectedTags]}
-        />
+        <Accordion allowZeroExpanded={true}>
+          <FilterComponent
+            heading="Industries"
+            checkBoxesArray={Array.from(industries)} // converting Set to Array
+            updateFunction={updateSelectedAttribute}
+            attribute={"industries"}
+            storeArray={[...store.selectedIndustries]} // need that construction to provide context to the child. In other way this component will not to react on store's changes and will not be re-rendered.
+          />
+          <FilterComponent
+            heading="Build With"
+            checkBoxesArray={Array.from(programingLanguages)}
+            updateFunction={updateSelectedAttribute}
+            attribute={"programming_languages"}
+            storeArray={[...store.selectedProgrammingLanguages]}
+          />
+          <FilterComponent
+            heading="Databases"
+            checkBoxesArray={Array.from(dataBases)}
+            updateFunction={updateSelectedAttribute}
+            attribute={"databases"}
+            storeArray={[...store.selectedDataBases]}
+          />
+          <FilterComponent
+            heading="Platforms"
+            checkBoxesArray={Array.from(platforms)}
+            updateFunction={updateSelectedAttribute}
+            attribute={"platforms"}
+            storeArray={[...store.selectedPlatforms]}
+          />
+          <TagComponent
+            TagsArray={Array.from(tags)}
+            updateFunction={updateSelectedAttribute}
+            attribute={"tags"}
+            storeArray={[...store.selectedTags]}
+          />
+        </Accordion>
         <ResetFilterButtonWrapper>
           <ResetFiltersButton
             className="af-button"
