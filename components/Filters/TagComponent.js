@@ -8,8 +8,6 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 
-import { customMedia } from "../../styled-components/customMedia";
-
 const TagComponentWrapper = styled.div`
   .accordion__button {
     font-size: 18px;

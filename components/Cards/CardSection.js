@@ -58,10 +58,9 @@ class CardSection extends Component {
     store.initialCountHandler(store.initialCount + SHOW_MORE_PROJECTS_COUNT); // update store variable responsible for counter of show cards
   }
 
-  handleBackToTop() {}
-
   render() {
-    const { store } = this.props;
+    const { store, icons } = this.props;
+
     return (
       <CardSectionWrapper id="card-section">
         {store.filteredProjects.length !== 0 ? (
@@ -72,9 +71,12 @@ class CardSection extends Component {
                   key={index}
                   heading={card?.title}
                   text={card?.description}
+                  programming_languages={card?.programming_languages}
+                  databases={card?.databases}
                   technologies={card?.technologies}
                   imageUrl={card?.image}
                   display={index < store.initialCount}
+                  icons={icons}
                 />
               );
             }

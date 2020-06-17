@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import { customMedia } from "../../styled-components/customMedia";
 
+import { imageBuilder } from "../../utils/imageBuilder";
+
 const CardComponentWrapper = styled.a`
   display: none;
   flex-direction: row;
@@ -47,9 +49,28 @@ const Text = styled.p`
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 `;
-const Techologies = styled.div`
-  font-size: 18px;
-  flex-wrap: wrap;
+const TechnologiesWrapper = styled.div`
+  display: flex;
+  margin-top: 25px;
+`;
+
+const TechnologyItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  p {
+    font-size: 18px;
+    color: var(--grey);
+    line-height: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+  }
+`;
+
+const TechnologyIcons = styled.div`
+  img {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -71,19 +92,60 @@ const ImageWrapper = styled.div`
 `;
 
 const CardComponent = (props) => {
+  const databases = imageBuilder(props.databases, props.icons);
+  const programming_languages = imageBuilder(
+    props.programming_languages,
+    props.icons
+  );
+  const technologies = imageBuilder(props.technologies, props.icons);
+
   return (
     <CardComponentWrapper display={props.display}>
       <TextWrapper>
         <Heading>{props.heading}</Heading>
         <Text>{props.text}</Text>
-        {/* <Techologies>
-          {
-            console.log(technologies)
-            // technologies.forEach((technology) => {
-            //   <p>{technology}</p>;
-            // })
-          }
-        </Techologies> */}
+        {databases.length !== 0 && (
+          <TechnologiesWrapper>
+            <TechnologyItem>
+              <p>Databases</p>
+              <TechnologyIcons>
+                {databases.map((database) => {
+                  if (database !== "") {
+                    return <img src={database} alt="oops" />;
+                  }
+                })}
+              </TechnologyIcons>
+            </TechnologyItem>
+          </TechnologiesWrapper>
+        )}
+        {programming_languages.length !== 0 && (
+          <TechnologiesWrapper>
+            <TechnologyItem>
+              <p>Programming Languages</p>
+              <TechnologyIcons>
+                {programming_languages.map((language) => {
+                  if (language !== "") {
+                    return <img src={language} alt="oops" />;
+                  }
+                })}
+              </TechnologyIcons>
+            </TechnologyItem>
+          </TechnologiesWrapper>
+        )}
+        {technologies.length !== 0 && (
+          <TechnologiesWrapper>
+            <TechnologyItem>
+              <p>Technologies</p>
+              <TechnologyIcons>
+                {technologies.map((technology) => {
+                  if (technology !== "") {
+                    return <img src={technology} alt="oops" />;
+                  }
+                })}
+              </TechnologyIcons>
+            </TechnologyItem>
+          </TechnologiesWrapper>
+        )}
       </TextWrapper>
       <ImageWrapper imageUrl={props.imageUrl} />
     </CardComponentWrapper>

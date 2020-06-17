@@ -14,8 +14,10 @@ import {
 import Manager from "../services/Manager";
 import { cardHasKeyword, findAllKeys } from "../utils/searchInputFunctions";
 
-const Index = ({ data }) => {
-  const store = initStore(data.projects); // initialize store
+const Index = ({ icons, projectData }) => {
+  const store = initStore(projectData.data.projects); // initialize store
+
+  const iconsObject = icons.icons;
 
   const inputOnChangeHandler = (event) => {
     store.setFilteredProjects(
@@ -65,15 +67,18 @@ const Index = ({ data }) => {
             onInput={(event) => inputOnChangeHandler(event)}
             onBlur={(event) => inputOnBlurHandler(event)}
           />
-          <FilterSection></FilterSection>
+          <FilterSection />
         </NavigationSection>
-        <CardSection />
+        <CardSection icons={iconsObject} />
       </MainPageWrapper>
     </Provider>
   );
 };
 Index.getInitialProps = async () => {
-  return Manager.getData(`projects`); //get project from database
+  const res = await fetch(process.env.REACT_APP_API_LOGOS_PATH_BACK); //get icons from database
+  const icons = await res.json();
+  const projectData = await Manager.getData(`projects`); //get project from database
+  return { icons, projectData };
 };
 
 export default Index;
