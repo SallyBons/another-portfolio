@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { customMedia } from "../../styled-components/customMedia";
 
-const CardComponentWrapper = styled.article`
+const CardComponentWrapper = styled.a`
   display: none;
   flex-direction: row;
   max-width: 100%;
@@ -9,6 +9,12 @@ const CardComponentWrapper = styled.article`
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   margin: 0 auto 25px;
+  cursor: pointer;
+  transition: margin-right 0.5s ease;
+  margin-right: 0px;
+  :hover {
+    margin-right: -5px;
+  }
   ${(props) =>
     props.display &&
     css`
