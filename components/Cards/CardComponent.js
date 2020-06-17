@@ -61,6 +61,7 @@ const ImageWrapper = styled.div`
   max-width: unset;
   width: 100%;
   min-height: 200px;
+  border-radius: 6px;
   `}
 `;
 
