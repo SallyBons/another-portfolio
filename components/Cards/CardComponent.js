@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import ReactTooltip from "react-tooltip";
 import { customMedia } from "../../styled-components/customMedia";
 
 import { imageBuilder } from "../../utils/imageBuilder";
@@ -72,9 +73,14 @@ const TechnologyItem = styled.div`
 const TechnologyIcons = styled.div`
   border-top: 1px solid var(--grey);
   padding-top: 10px;
+  display: flex;
+  flex-direction: row;
   img {
     width: 50px;
     height: 50px;
+  }
+  .tooltip {
+    border: 1px solid var(--grey);
   }
 `;
 
@@ -118,17 +124,53 @@ const CardComponent = (props) => {
               <TechnologyIcons>
                 {databases.map((database, index) => {
                   return (
-                    <img key={index} src={database} alt="technology-icon" />
+                    <div key={index}>
+                      <img
+                        src={database.url}
+                        alt="technology-icon"
+                        data-tip={database.name}
+                      />
+                      <ReactTooltip
+                        place="top"
+                        type="light"
+                        effect="solid"
+                        className="tooltip"
+                      />
+                    </div>
                   );
                 })}
                 {programming_languages.map((language, index) => {
                   return (
-                    <img key={index} src={language} alt="technology-icon" />
+                    <div key={index}>
+                      <img
+                        src={language.url}
+                        alt="technology-icon"
+                        data-tip={language.name}
+                      />
+                      <ReactTooltip
+                        place="top"
+                        type="light"
+                        effect="solid"
+                        className="tooltip"
+                      />
+                    </div>
                   );
                 })}
                 {technologies.map((technology, index) => {
                   return (
-                    <img key={index} src={technology} alt="technology-icon" />
+                    <div key={index}>
+                      <img
+                        src={technology.url}
+                        alt="technology-icon"
+                        data-tip={technology.name}
+                      />
+                      <ReactTooltip
+                        place="top"
+                        type="light"
+                        effect="solid"
+                        className="tooltip"
+                      />
+                    </div>
                   );
                 })}
               </TechnologyIcons>

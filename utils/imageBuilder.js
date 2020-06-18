@@ -7,8 +7,10 @@ export const imageBuilder = (dataArray, iconsObject) => {
       if (iconsObject.hasOwnProperty(key)) {
         const icon = iconsObject[key];
         if (key === element && icon !== "") {
-          const url = ICON_URL + icon;
-          urlsArray.push(url);
+          // const url = ICON_URL + icon;
+          // const name = key;
+          const objectsValues = { name: key, url: ICON_URL + icon };
+          urlsArray.push(objectsValues);
         }
       }
     }
