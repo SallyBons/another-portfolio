@@ -29,11 +29,6 @@ const Index = ({ icons, projectData }) => {
     store.setSearchPhrase(event.target.value); // put search counter in the store for not-found block
   };
 
-  const inputOnBlurHandler = (event) => {
-    event.target.value = "";
-    store.setSearchPhrase(event.target.value); // when we stop use Search, input will be wiped
-  };
-
   return (
     <Provider store={store}>
       <Head>
@@ -65,7 +60,6 @@ const Index = ({ icons, projectData }) => {
             placeholder="Search..."
             type="text"
             onInput={(event) => inputOnChangeHandler(event)}
-            onBlur={(event) => inputOnBlurHandler(event)}
           />
           <FilterSection />
         </NavigationSection>

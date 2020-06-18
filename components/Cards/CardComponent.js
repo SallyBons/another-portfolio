@@ -57,16 +57,21 @@ const TechnologiesWrapper = styled.div`
 const TechnologyItem = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   p {
-    font-size: 18px;
-    color: var(--grey);
+    font-size: 20px;
+    color: #6f6f6f;
     line-height: 25px;
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
+    padding-bottom: 10px;
+    width: 100%;
   }
 `;
 
 const TechnologyIcons = styled.div`
+  border-top: 1px solid var(--grey);
+  padding-top: 10px;
   img {
     width: 50px;
     height: 50px;
@@ -104,43 +109,27 @@ const CardComponent = (props) => {
       <TextWrapper>
         <Heading>{props.heading}</Heading>
         <Text>{props.text}</Text>
-        {databases.length !== 0 && (
-          <TechnologiesWrapper>
-            <TechnologyItem>
-              <p>Databases</p>
-              <TechnologyIcons>
-                {databases.map((database) => {
-                  if (database !== "") {
-                    return <img src={database} alt="oops" />;
-                  }
-                })}
-              </TechnologyIcons>
-            </TechnologyItem>
-          </TechnologiesWrapper>
-        )}
-        {programming_languages.length !== 0 && (
-          <TechnologiesWrapper>
-            <TechnologyItem>
-              <p>Programming Languages</p>
-              <TechnologyIcons>
-                {programming_languages.map((language) => {
-                  if (language !== "") {
-                    return <img src={language} alt="oops" />;
-                  }
-                })}
-              </TechnologyIcons>
-            </TechnologyItem>
-          </TechnologiesWrapper>
-        )}
-        {technologies.length !== 0 && (
+        {(databases.length !== 0 ||
+          programming_languages.length !== 0 ||
+          technologies.length !== 0) && (
           <TechnologiesWrapper>
             <TechnologyItem>
               <p>Technologies</p>
               <TechnologyIcons>
-                {technologies.map((technology) => {
-                  if (technology !== "") {
-                    return <img src={technology} alt="oops" />;
-                  }
+                {databases.map((database, index) => {
+                  return (
+                    <img key={index} src={database} alt="technology-icon" />
+                  );
+                })}
+                {programming_languages.map((language, index) => {
+                  return (
+                    <img key={index} src={language} alt="technology-icon" />
+                  );
+                })}
+                {technologies.map((technology, index) => {
+                  return (
+                    <img key={index} src={technology} alt="technology-icon" />
+                  );
                 })}
               </TechnologyIcons>
             </TechnologyItem>

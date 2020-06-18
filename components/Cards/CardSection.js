@@ -93,24 +93,27 @@ class CardSection extends Component {
             </p>
           </NotFoundText>
         )}
-        {store.filteredProjects.length > store.initialCount ? (
-          // if there are no projects in render-list, button is hidden
+        {store.filteredProjects.length > store.initialCount && (
+          // render button if there are more projects in list
           <ButtonWrapper>
             <LoadMoreButton className="af-button" onClick={this.handleLoadMore}>
               Load more
             </LoadMoreButton>
           </ButtonWrapper>
-        ) : (
-          <ButtonWrapper>
-            <BackToTopButton
-              className="af-button"
-              onClick={this.handleBackToTop}
-              href="#card-section"
-            >
-              Back to Top
-            </BackToTopButton>
-          </ButtonWrapper>
         )}
+
+        {store.filteredProjects.length > 2 && // render button back to top, when there are more than 2 projects on page
+          store.filteredProjects.length <= store.initialCount && (
+            <ButtonWrapper>
+              <BackToTopButton
+                className="af-button"
+                onClick={this.handleBackToTop}
+                href="#card-section"
+              >
+                Back to Top
+              </BackToTopButton>
+            </ButtonWrapper>
+          )}
       </CardSectionWrapper>
     );
   }

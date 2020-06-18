@@ -116,6 +116,16 @@ class Store {
       projects = filterProjectByAttribute(projects, this.selectedTags, "tags");
     }
 
+    if (
+      this.selectedIndustries.length > 0 ||
+      this.selectedProgrammingLanguages.length > 0 ||
+      this.selectedDataBases.length > 0 ||
+      this.selectedPlatforms.length > 0 ||
+      this.selectedTags.length > 0
+    ) {
+      this.searchPhrase = "";
+    }
+
     this.setFilteredProjects(projects);
     this.initialCountHandler(PROJECTS_INITIAL_COUNT);
   };
