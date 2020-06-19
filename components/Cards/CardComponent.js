@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import ReactTooltip from "react-tooltip";
 import { customMedia } from "../../styled-components/customMedia";
 
 import { imageBuilder } from "../../utils/imageBuilder";
@@ -79,8 +78,37 @@ const TechnologyIcons = styled.div`
     width: 50px;
     height: 50px;
   }
-  .tooltip {
-    border: 1px solid var(--grey);
+`;
+
+const TooltipWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  :hover {
+    div {
+      display: flex;
+    }
+  }
+`;
+
+const Tooltip = styled.div`
+  display: none;
+  position: absolute;
+  top: -35px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 5px 10px;
+  ::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: grey transparent transparent transparent;
   }
 `;
 
@@ -124,53 +152,26 @@ const CardComponent = (props) => {
               <TechnologyIcons>
                 {databases.map((database, index) => {
                   return (
-                    <div key={index}>
-                      <img
-                        src={database.url}
-                        alt="technology-icon"
-                        data-tip={database.name}
-                      />
-                      <ReactTooltip
-                        place="top"
-                        type="light"
-                        effect="solid"
-                        className="tooltip"
-                      />
-                    </div>
+                    <TooltipWrapper key={index}>
+                      <img src={database.url} alt="technology-icon" />
+                      <Tooltip>{database.name}</Tooltip>
+                    </TooltipWrapper>
                   );
                 })}
                 {programming_languages.map((language, index) => {
                   return (
-                    <div key={index}>
-                      <img
-                        src={language.url}
-                        alt="technology-icon"
-                        data-tip={language.name}
-                      />
-                      <ReactTooltip
-                        place="top"
-                        type="light"
-                        effect="solid"
-                        className="tooltip"
-                      />
-                    </div>
+                    <TooltipWrapper key={index}>
+                      <img src={language.url} alt="technology-icon" />
+                      <Tooltip>{language.name}</Tooltip>
+                    </TooltipWrapper>
                   );
                 })}
                 {technologies.map((technology, index) => {
                   return (
-                    <div key={index}>
-                      <img
-                        src={technology.url}
-                        alt="technology-icon"
-                        data-tip={technology.name}
-                      />
-                      <ReactTooltip
-                        place="top"
-                        type="light"
-                        effect="solid"
-                        className="tooltip"
-                      />
-                    </div>
+                    <TooltipWrapper key={index}>
+                      <img src={technology.url} alt="technology-icon" />
+                      <Tooltip>{technology.name}</Tooltip>
+                    </TooltipWrapper>
                   );
                 })}
               </TechnologyIcons>
