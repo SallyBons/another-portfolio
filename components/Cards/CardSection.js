@@ -87,9 +87,7 @@ class CardSection extends Component {
             {store.searchPhrase && <h3>for "{store.searchPhrase}"</h3>}
             <p>
               Please look through&nbsp;
-              <a href="https://azati.ai/portfolio/all">
-                the complete list of case studies
-              </a>
+              <a href="/all-case-studies/">the complete list of case studies</a>
             </p>
           </NotFoundText>
         )}

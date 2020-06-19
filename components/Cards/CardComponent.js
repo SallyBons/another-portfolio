@@ -75,8 +75,8 @@ const TechnologyIcons = styled.div`
   display: flex;
   flex-direction: row;
   img {
-    width: 50px;
-    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
   }
 `;
 
@@ -85,6 +85,7 @@ const TooltipWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 999;
   :hover {
     div {
       display: flex;
@@ -93,6 +94,14 @@ const TooltipWrapper = styled.div`
 `;
 
 const Tooltip = styled.div`
+  // TODO: Think about dynamic tooltip width
+  min-width: 110px;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   display: none;
   position: absolute;
   top: -35px;
@@ -154,7 +163,9 @@ const CardComponent = (props) => {
                   return (
                     <TooltipWrapper key={index}>
                       <img src={database.url} alt="technology-icon" />
-                      <Tooltip>{database.name}</Tooltip>
+                      <Tooltip>
+                        <div>{database.name}</div>
+                      </Tooltip>
                     </TooltipWrapper>
                   );
                 })}
@@ -162,7 +173,9 @@ const CardComponent = (props) => {
                   return (
                     <TooltipWrapper key={index}>
                       <img src={language.url} alt="technology-icon" />
-                      <Tooltip>{language.name}</Tooltip>
+                      <Tooltip>
+                        <div>{language.name}</div>
+                      </Tooltip>
                     </TooltipWrapper>
                   );
                 })}
@@ -170,7 +183,9 @@ const CardComponent = (props) => {
                   return (
                     <TooltipWrapper key={index}>
                       <img src={technology.url} alt="technology-icon" />
-                      <Tooltip>{technology.name}</Tooltip>
+                      <Tooltip>
+                        <div>{technology.name}</div>
+                      </Tooltip>
                     </TooltipWrapper>
                   );
                 })}
