@@ -74,6 +74,7 @@ const TechnologyIcons = styled.div`
   padding-top: 10px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   img {
     min-width: 50px;
     min-height: 50px;
@@ -96,12 +97,13 @@ const TooltipWrapper = styled.div`
 const Tooltip = styled.div`
   // TODO: Think about dynamic tooltip width
   min-width: 110px;
+  box-sizing: content-box;
   text-align: center;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  color: grey;
   display: none;
   position: absolute;
   top: -35px;
@@ -109,6 +111,7 @@ const Tooltip = styled.div`
   border-radius: 4px;
   background-color: #fff;
   padding: 5px 10px;
+  z-index: 999;
   ::after {
     content: " ";
     position: absolute;
@@ -128,7 +131,6 @@ const ImageWrapper = styled.div`
   min-width: 250px;
   max-width: 250px;
   width: 100%;
-  min-height: 400px;
   border-radius: 0 6px 6px 0;
   ${customMedia.lessThan("1200px")`
   min-width: unset;
@@ -148,7 +150,7 @@ const CardComponent = (props) => {
   const technologies = imageBuilder(props.technologies, props.icons);
 
   return (
-    <CardComponentWrapper display={props.display}>
+    <CardComponentWrapper display={props.display} href={props.link}>
       <TextWrapper>
         <Heading>{props.heading}</Heading>
         <Text>{props.text}</Text>

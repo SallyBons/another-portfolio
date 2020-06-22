@@ -75,6 +75,7 @@ class CardSection extends Component {
                   databases={card?.databases}
                   technologies={card?.technologies}
                   imageUrl={card?.image}
+                  link={card?.link}
                   display={index < store.initialCount}
                   icons={icons}
                 />

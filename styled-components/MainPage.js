@@ -7,7 +7,7 @@ export const MainPageWrapper = styled.div`
   justify-content: center;
   margin: 0 auto;
   max-width: 1440px;
-  padding: 25px 15px;
+  padding: 50px 15px 25px 15px;
   width: 100%;
   box-sizing: border-box;
   ${customMedia.lessThan("992px")`
