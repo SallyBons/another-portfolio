@@ -34,7 +34,6 @@ const FilterSectionWrapper = styled.div`
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 6px 6px;
   ${customMedia.lessThan("1200px")`
-  margin-bottom: 25px;
   max-width: unset;
   `}
 `;
@@ -64,6 +63,9 @@ const ResetFiltersButton = styled.button`
 
 const ChosenFiltersComponentWrapper = styled.div`
   margin-top: 25px;
+  ${customMedia.lessThan("1200px")`
+  margin-bottom: 25px;
+  `}
 `;
 
 @inject("store")
