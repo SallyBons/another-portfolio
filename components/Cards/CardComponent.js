@@ -150,7 +150,11 @@ const CardComponent = (props) => {
   const technologies = imageBuilder(props.technologies, props.icons);
 
   return (
-    <CardComponentWrapper display={props.display} href={props.link}>
+    <CardComponentWrapper
+      display={props.display}
+      href={props.link}
+      target="_blank"
+    >
       <TextWrapper>
         <Heading>{props.heading}</Heading>
         <Text>{props.text}</Text>
@@ -161,22 +165,22 @@ const CardComponent = (props) => {
             <TechnologyItem>
               <p>Technologies</p>
               <TechnologyIcons>
-                {databases.map((database, index) => {
-                  return (
-                    <TooltipWrapper key={index}>
-                      <img src={database.url} alt="technology-icon" />
-                      <Tooltip>
-                        <div>{database.name}</div>
-                      </Tooltip>
-                    </TooltipWrapper>
-                  );
-                })}
                 {programming_languages.map((language, index) => {
                   return (
                     <TooltipWrapper key={index}>
                       <img src={language.url} alt="technology-icon" />
                       <Tooltip>
                         <div>{language.name}</div>
+                      </Tooltip>
+                    </TooltipWrapper>
+                  );
+                })}
+                {databases.map((database, index) => {
+                  return (
+                    <TooltipWrapper key={index}>
+                      <img src={database.url} alt="technology-icon" />
+                      <Tooltip>
+                        <div>{database.name}</div>
                       </Tooltip>
                     </TooltipWrapper>
                   );
