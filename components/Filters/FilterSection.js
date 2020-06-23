@@ -7,6 +7,7 @@ import InputComponent from "../InputComponent";
 import TagComponent from "./TagComponent";
 import { getAllCategories } from "../../utils/getAllCategories";
 import { cardHasKeyword, findAllKeys } from "../../utils/searchInputFunctions";
+import ChosenFiltersComponent from "../ChosenFiltersComponent";
 
 import { customMedia } from "../../styled-components/customMedia";
 
@@ -59,6 +60,10 @@ const ResetFilterButtonWrapper = styled.div`
 const ResetFiltersButton = styled.button`
   max-width: initial;
   width: 100%;
+`;
+
+const ChosenFiltersComponentWrapper = styled.div`
+  margin-top: 25px;
 `;
 
 @inject("store")
@@ -155,6 +160,28 @@ class FilterSection extends Component {
             </ResetFiltersButton>
           </ResetFilterButtonWrapper>
         </FilterSectionWrapper>
+        <ChosenFiltersComponentWrapper>
+          <ChosenFiltersComponent
+            chosenFiltersArray={store.selectedIndustries}
+            updateFunction={updateSelectedAttribute}
+            attribute={"industries"}
+          />
+          <ChosenFiltersComponent
+            chosenFiltersArray={store.selectedProgrammingLanguages}
+            updateFunction={updateSelectedAttribute}
+            attribute={"programming_languages"}
+          />
+          <ChosenFiltersComponent
+            chosenFiltersArray={store.selectedDataBases}
+            updateFunction={updateSelectedAttribute}
+            attribute={"databases"}
+          />
+          <ChosenFiltersComponent
+            chosenFiltersArray={store.selectedPlatforms}
+            updateFunction={updateSelectedAttribute}
+            attribute={"platforms"}
+          />
+        </ChosenFiltersComponentWrapper>
       </NavigationSection>
     );
   }
