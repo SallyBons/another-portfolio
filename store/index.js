@@ -24,7 +24,7 @@ class Store {
   };
 
   @action setSearchPhrase = (text) => {
-    this.resetAll(); //reset filters when type
+    this.resetAllFilters(); //reset filters when type
     this.searchPhrase = text;
   };
 
@@ -32,12 +32,16 @@ class Store {
     this.initialCount = newCount;
   };
 
-  @action resetAll = () => {
+  @action resetAllFilters = () => {
     this.selectedIndustries = [];
     this.selectedProgrammingLanguages = [];
     this.selectedDataBases = [];
     this.selectedPlatforms = [];
     this.selectedTags = [];
+  };
+
+  @action resetSearchPhrase = () => {
+    this.searchPhrase = "";
   };
 
   @action updateSelectedAttribute = (value, attribute) => {

@@ -14,20 +14,3 @@ export const MainPageWrapper = styled.div`
   flex-direction:column;
   `}
 `;
-
-export const NavigationSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  width: 100%;
-  padding: 0 25px;
-  box-sizing: border-box;
-  position: sticky;
-  top: 20px;
-  height: 100%;
-  ${customMedia.lessThan("992px")`
-  max-width: 1200px;
-  padding: 0;
-  position: initial;
-  `}
-`;

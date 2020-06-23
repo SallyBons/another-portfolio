@@ -2,32 +2,17 @@ import { Provider } from "mobx-react";
 import Head from "next/head";
 
 import CardSection from "../components/Cards/CardSection";
-import InputComponent from "../components/InputComponent";
 import FilterSection from "../components/Filters/FilterSection";
 import { initStore } from "../store"; // import store
 
-import {
-  MainPageWrapper,
-  NavigationSection,
-} from "../styled-components/MainPage"; // import styles for main page
+import { MainPageWrapper } from "../styled-components/MainPage"; // import styles for main page
 
 import Manager from "../services/Manager";
-import { cardHasKeyword, findAllKeys } from "../utils/searchInputFunctions";
 
 const Index = ({ icons, projectData }) => {
   const store = initStore(projectData.data.projects); // initialize store
 
   const iconsObject = icons.icons;
-
-  const inputOnChangeHandler = (event) => {
-    store.setFilteredProjects(
-      store.list.filter(
-        (element) =>
-          cardHasKeyword(findAllKeys(store.list), event.target.value, element) // handler for search input
-      )
-    );
-    store.setSearchPhrase(event.target.value); // put search counter in the store for not-found block
-  };
 
   return (
     <Provider store={store}>
@@ -55,14 +40,7 @@ const Index = ({ icons, projectData }) => {
         />
       </Head>
       <MainPageWrapper>
-        <NavigationSection>
-          <InputComponent
-            placeholder="Search..."
-            type="text"
-            onInput={(event) => inputOnChangeHandler(event)}
-          />
-          <FilterSection />
-        </NavigationSection>
+        <FilterSection />
         <CardSection icons={iconsObject} />
       </MainPageWrapper>
     </Provider>

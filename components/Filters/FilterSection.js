@@ -3,10 +3,29 @@ import { inject, observer } from "mobx-react";
 import styled from "styled-components";
 import { Accordion } from "react-accessible-accordion";
 import FilterComponent from "./FilterComponent";
+import InputComponent from "../InputComponent";
 import TagComponent from "./TagComponent";
 import { getAllCategories } from "../../utils/getAllCategories";
+import { cardHasKeyword, findAllKeys } from "../../utils/searchInputFunctions";
 
 import { customMedia } from "../../styled-components/customMedia";
+
+const NavigationSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  padding: 0 25px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 20px;
+  height: 100%;
+  ${customMedia.lessThan("992px")`
+  max-width: 1200px;
+  padding: 0;
+  position: initial;
+  `}
+`;
 
 const FilterSectionWrapper = styled.div`
   max-width: 350px;
@@ -53,8 +72,20 @@ class FilterSection extends Component {
   handleResetAllFilters() {
     const { store } = this.props;
     store.setFilteredProjects(store.list);
-    store.resetAll();
+    store.resetAllFilters();
+    store.resetSearchPhrase();
   }
+
+  inputOnChangeHandler = (event) => {
+    const { store } = this.props;
+    store.setFilteredProjects(
+      store.list.filter(
+        (element) =>
+          cardHasKeyword(findAllKeys(store.list), event.target.value, element) // handler for search input
+      )
+    );
+    store.setSearchPhrase(event.target.value); // put search counter in the store for not-found block
+  };
 
   render() {
     const { store } = this.props;
@@ -70,53 +101,61 @@ class FilterSection extends Component {
     const updateSelectedAttribute = store.updateSelectedAttribute; //  store update function
 
     return (
-      <FilterSectionWrapper>
-        <FilterHeading>Filters</FilterHeading>
-        <Accordion allowZeroExpanded={true}>
-          <FilterComponent
-            heading="Industries"
-            checkBoxesArray={Array.from(industries)} // converting Set to Array
-            updateFunction={updateSelectedAttribute}
-            attribute={"industries"}
-            storeArray={[...store.selectedIndustries]} // need that construction to provide context to the child. In other way this component will not to react on store's changes and will not be re-rendered.
-          />
-          <FilterComponent
-            heading="Build With"
-            checkBoxesArray={Array.from(programingLanguages)}
-            updateFunction={updateSelectedAttribute}
-            attribute={"programming_languages"}
-            storeArray={[...store.selectedProgrammingLanguages]}
-          />
-          <FilterComponent
-            heading="Databases"
-            checkBoxesArray={Array.from(dataBases)}
-            updateFunction={updateSelectedAttribute}
-            attribute={"databases"}
-            storeArray={[...store.selectedDataBases]}
-          />
-          <FilterComponent
-            heading="Platforms"
-            checkBoxesArray={Array.from(platforms)}
-            updateFunction={updateSelectedAttribute}
-            attribute={"platforms"}
-            storeArray={[...store.selectedPlatforms]}
-          />
-          <TagComponent
-            TagsArray={Array.from(tags)}
-            updateFunction={updateSelectedAttribute}
-            attribute={"tags"}
-            storeArray={[...store.selectedTags]}
-          />
-        </Accordion>
-        <ResetFilterButtonWrapper>
-          <ResetFiltersButton
-            className="af-button"
-            onClick={this.handleResetAllFilters}
-          >
-            Reset all filters
-          </ResetFiltersButton>
-        </ResetFilterButtonWrapper>
-      </FilterSectionWrapper>
+      <NavigationSection>
+        <InputComponent
+          placeholder="Search..."
+          type="text"
+          onInput={(event) => this.inputOnChangeHandler(event)}
+          value={store.searchPhrase}
+        />
+        <FilterSectionWrapper>
+          <FilterHeading>Filters</FilterHeading>
+          <Accordion allowZeroExpanded={true}>
+            <FilterComponent
+              heading="Industries"
+              checkBoxesArray={Array.from(industries)} // converting Set to Array
+              updateFunction={updateSelectedAttribute}
+              attribute={"industries"}
+              storeArray={[...store.selectedIndustries]} // need that construction to provide context to the child. In other way this component will not to react on store's changes and will not be re-rendered.
+            />
+            <FilterComponent
+              heading="Build With"
+              checkBoxesArray={Array.from(programingLanguages)}
+              updateFunction={updateSelectedAttribute}
+              attribute={"programming_languages"}
+              storeArray={[...store.selectedProgrammingLanguages]}
+            />
+            <FilterComponent
+              heading="Databases"
+              checkBoxesArray={Array.from(dataBases)}
+              updateFunction={updateSelectedAttribute}
+              attribute={"databases"}
+              storeArray={[...store.selectedDataBases]}
+            />
+            <FilterComponent
+              heading="Platforms"
+              checkBoxesArray={Array.from(platforms)}
+              updateFunction={updateSelectedAttribute}
+              attribute={"platforms"}
+              storeArray={[...store.selectedPlatforms]}
+            />
+            <TagComponent
+              TagsArray={Array.from(tags)}
+              updateFunction={updateSelectedAttribute}
+              attribute={"tags"}
+              storeArray={[...store.selectedTags]}
+            />
+          </Accordion>
+          <ResetFilterButtonWrapper>
+            <ResetFiltersButton
+              className="af-button"
+              onClick={this.handleResetAllFilters}
+            >
+              Reset all filters
+            </ResetFiltersButton>
+          </ResetFilterButtonWrapper>
+        </FilterSectionWrapper>
+      </NavigationSection>
     );
   }
 }
