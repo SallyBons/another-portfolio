@@ -36,7 +36,7 @@ const SearchInput = styled.input`
 `;
 
 const Image = styled.div`
-  background-image: url(/img/search.svg);
+  background-image: url(https://static.azati.ai/web-site/res/portfolio/search.svg);
   background-position: center center;
   background-size: 20px, auto, cover; // search icon
   background-repeat: no-repeat;
